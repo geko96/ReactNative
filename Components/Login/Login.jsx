@@ -1,4 +1,4 @@
-import { Text, View, StyleSheet, TextInput, Button, TouchableWithoutFeedback, Keyboard } from "react-native";
+import { Text, View, StyleSheet, TextInput, Button, TouchableWithoutFeedback, Keyboard, Dimensions } from "react-native";
 import React, {useEffect, useState,useContext} from "react";
 import { Context } from "../Context/Context";
 import { useFonts } from "expo-font";
@@ -11,6 +11,8 @@ export default function Login () {
     const [password, setPassword] = useState("");	// password state
 
     const { loged, setLoged, user, setUser } = useContext(Context);	// context state
+    const { height, width } = Dimensions.get("window");	// get screen dimensions
+    const [isPortrait, setIsPortrait] = useState(true);
 
     const [loaded] = useFonts({
         'Poppins': require("../../assets/Fonts/Poppins-Regular.ttf"),
@@ -26,6 +28,23 @@ export default function Login () {
     if (!loaded) {
         return <View />;
     }	// if fonts are not loaded, return empty view
+
+    function chackOrientation() {
+        if (Dimensions.get('window').width < Dimensions.get('window').height) {
+            setIsPortrait(true);
+            
+
+        } else {
+            setIsPortrait(false);
+            
+        }
+        return
+    }	// check orientation state
+    
+    
+    Dimensions.addEventListener("change", () => {
+        chackOrientation();
+    })
     
 
 
@@ -37,13 +56,16 @@ export default function Login () {
                 <Text style={styles.title}>Login</Text>
 
                 <View style={styles.input} >
-                    <TextInput value={username} style={styles.input} placeholder="Username" onChangeText={(text) => {
-                        setUsername(text);
-                    }}/>
-                    <TextInput value={password} style={styles.input} placeholder="Password" onChangeText={(text) => {
-                        setPassword(text);
 
-                    }} secureTextEntry={true} />
+                    <View style={ isPortrait ? {} : styles.RowOrientation}>
+                        <TextInput value={username} style={isPortrait ? styles.input : styles.rowInput} placeholder="Username" onChangeText={(text) => {
+                            setUsername(text);
+                        }}/>
+                        <TextInput value={password} style={isPortrait ? styles.input : styles.rowInput} placeholder="Password" onChangeText={(text) => {
+                            setPassword(text);
+
+                        }} secureTextEntry={true} />
+                    </View>
                     
                     <Button title="Login" onPress={() => {
 
@@ -125,4 +147,21 @@ const styles = StyleSheet.create({
     margin10: {
         marginTop: 20,
     },
+    RowOrientation: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        marginBottom: 20,
+        backgroundColor: '#7F7979',
+        width: '100%',
+        
+    },
+    rowInput: {
+        backgroundColor: '#fff',
+        width: '40%',
+        height: 40,
+        borderRadius: 5,
+        fontFamily: 'PoppinsMedium',
+        textAlign: 'center'
+
+    }
   });

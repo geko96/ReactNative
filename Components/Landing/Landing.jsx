@@ -1,9 +1,24 @@
 import { StyleSheet, View, Text, TouchableOpacity } from "react-native";
 import Icon from "../Icons/Icon";
+import { useFonts } from "expo-font";
 
-export default function Landing ({user}) {
 
+export default function Landing ({navigation}) {
+
+    const [loaded] = useFonts({
+        'Poppins': require("../../assets/Fonts/Poppins-Regular.ttf"),
+        'PoppinsBold': require("../../assets/Fonts/Poppins-Bold.ttf"),
+        'PoppinsSemiBold': require("../../assets/Fonts/Poppins-SemiBold.ttf"),
+        'PoppinsMedium': require("../../assets/Fonts/Poppins-Medium.ttf"),
+        'PoppinsLight': require("../../assets/Fonts/Poppins-Light.ttf"),
+        'PoppinsThin': require("../../assets/Fonts/Poppins-Thin.ttf"),
+        'PoppinsExtraLight': require("../../assets/Fonts/Poppins-ExtraLight.ttf"),
+        'PoppinsExtraBold': require("../../assets/Fonts/Poppins-ExtraBold.ttf"),
+    });	// fonts loaded state
     
+    if (!loaded) {
+        return <View />;
+    }
 
 
     return (
@@ -17,7 +32,7 @@ export default function Landing ({user}) {
                     </TouchableOpacity>
                     
                     <TouchableOpacity onPress={() => {
-                        alert("Hello");
+                        navigation.navigate("New");
                         }}>
                         <Icon style={styles.logo} image={require("../../assets/Images/Icons/add.png")} />
                     </TouchableOpacity>
@@ -49,10 +64,8 @@ export default function Landing ({user}) {
                 
             </View>
             <View style={styles.landing}>
-                <Text>{user.name}</Text>
-                <Text>{user.mail}</Text>
-                <Text>{user.cuit}</Text>
-                <Text>{user.token}</Text>
+                <Text style={styles.title}>Bienvendo</Text>
+
 
             </View>
         </View>
@@ -85,12 +98,21 @@ const styles = StyleSheet.create({
         flex: 1,
         width: 20,
         height: "100%",
-        borderWidth: 1,
+        alignItems: 'center',
+        
 
     },
     logo: {
         marginBottom: 10,
 
+    },
+    title: {
+        textAlign: 'center',
+        fontFamily: 'PoppinsBold',
+        fontSize: 20,
+        width: '100%',
+        borderBottomColor: '#ccc',
+        borderBottomWidth: 2,
     },
     
 });

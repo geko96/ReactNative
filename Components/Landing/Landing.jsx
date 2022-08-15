@@ -1,6 +1,7 @@
 import { StyleSheet, View, Text, TouchableOpacity } from "react-native";
 import Icon from "../Icons/Icon";
 import { useFonts } from "expo-font";
+import { StatusBar } from "react-native";
 
 
 export default function Landing ({navigation}) {
@@ -64,7 +65,7 @@ export default function Landing ({navigation}) {
                 
             </View>
             <View style={styles.landing}>
-                <Text style={styles.title}>Bienvendo</Text>
+                <Text style={styles.title}>Bienvenido</Text>
 
 
             </View>
@@ -82,7 +83,7 @@ const styles = StyleSheet.create({
         backgroundColor: '#B3F2DD',
         alignItems: 'center',
         padding: 5,
-        paddingTop: 50,
+        paddingTop: StatusBar.currentHeight,
         minHeight: '100%'
 
     },

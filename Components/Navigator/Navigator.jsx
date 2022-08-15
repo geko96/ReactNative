@@ -10,8 +10,14 @@ export default function Navigator() {
 
     return (
         
-        <Stack.Navigator initialRouteName="Home">
-            <Stack.Screen name="Home" component={Landing}  />
+        <Stack.Navigator initialRouteName="Home" screenOptions={{
+            headerStyle: {
+                backgroundColor: "#E0EFDE",
+            }
+        }}>
+            <Stack.Screen name="Home" component={Landing} options={{
+                headerShown: false,
+            }} />
             <Stack.Screen name="New" component={New} />
         </Stack.Navigator>
         

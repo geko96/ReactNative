@@ -31,7 +31,7 @@ export default function App() {
   }else{
     return (
       <Provider value={ProviderValue}>
-        <Landing/>
+        <Landing user={user}/>
       </Provider>
     );
   }

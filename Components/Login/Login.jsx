@@ -3,7 +3,7 @@ import React, {useEffect, useState,useContext} from "react";
 import { Context } from "../Context/Context";
 import { useFonts } from "expo-font";
 
-const apiURL = "http://192.168.100.95:8080/api/login";
+const apiURL = "https://api-cantilever.herokuapp.com/api/login";
 
 
 export default function Login () {

@@ -57,11 +57,7 @@ export default function Landing ({navigation}) {
                     </TouchableOpacity>
                 </View>
                 
-                <TouchableOpacity onPress={() => {
-                    alert("Hello");
-                    }}>
-                    <Icon style={styles.logo} image={require("../../assets/Images/Icons/config.png")} />
-                </TouchableOpacity>
+                
                 
             </View>
             <View style={styles.landing}>

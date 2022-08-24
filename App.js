@@ -4,8 +4,7 @@ import React, {useState, useContext} from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import Login from './Components/Login/Login';
 import { Provider, Context } from './Components/Context/Context';
-
-import NavigatorContainer from './Components/Navigator/NavigatorContainer';
+import TabNav from './Components/TabNav/TabNav';
 
 export default function App() {
   const [ loged, setLoged ] = useState(false);	// logued state
@@ -32,7 +31,7 @@ export default function App() {
   }else{
     return (
       <Provider value={ProviderValue}>
-        <NavigatorContainer/>
+        <TabNav/>
       </Provider>
     );
   }

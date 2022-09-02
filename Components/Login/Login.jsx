@@ -1,7 +1,7 @@
 import { Text, View, StyleSheet, TextInput, Button, TouchableWithoutFeedback, Keyboard, Dimensions } from "react-native";
 import React, {useEffect, useState,useContext} from "react";
-import { Context } from "../Context/Context";
 import { useFonts } from "expo-font";
+import { useSelector } from "react-redux";
 
 const apiURL = "https://api-cantilever.herokuapp.com/api/login";
 
@@ -10,7 +10,7 @@ export default function Login () {
     const [username, setUsername] = useState("");	// username state
     const [password, setPassword] = useState("");	// password state
 
-    const { loged, setLoged, user, setUser } = useContext(Context);	// context state
+    
     const { height, width } = Dimensions.get("window");	// get screen dimensions
     const [isPortrait, setIsPortrait] = useState(true);
 
@@ -85,8 +85,7 @@ export default function Login () {
                             .then(res => res.json())
                             .then(data => {
                                 if (data.mail === username) {
-                                    setLoged(true);
-                                    setUser(data);
+                                    alert("Bienvenido " + data.name);
                                 }else{
                                     alert("Login failed");
                                 }

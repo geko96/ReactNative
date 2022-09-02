@@ -1,48 +1,19 @@
 import { StatusBar } from 'expo-status-bar';
 import React, {useState, useContext} from 'react';
+import { Provider, useSelector } from 'react-redux';
+import EntryPoint from './Components/EntryPoint/EntryPoint';
 
-import { StyleSheet, Text, View } from 'react-native';
-import Login from './Components/Login/Login';
-import { Provider, Context } from './Components/Context/Context';
-import TabNav from './Components/TabNav/TabNav';
-
+import Store from './Components/Context/Reducers/index';
 export default function App() {
-  const [ loged, setLoged ] = useState(false);	// logued state
-  const [ user, setUser ] = useState({});			// user state
-  const [ token, setToken ] = useState('');			// token state
 
-  const ProviderValue = {
-    loged,
-    setLoged,
-    user,
-    setUser,
-    token,
-    setToken
-  }
-
-  if(!loged) {
-    return (
-      <Provider value={ProviderValue}>
-        <View style={styles.container}>
-          <Login />
-        </View>
-      </Provider>
-    );
-  }else{
-    return (
-      <Provider value={ProviderValue}>
-        <TabNav/>
-      </Provider>
-    );
-  }
+  
+return (
+  <Provider store={Store}>
+    <EntryPoint />
+  </Provider>
+)
+  
   
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    paddingTop: 30,
-    backgroundColor: '#37393a',
 
-  },
-});

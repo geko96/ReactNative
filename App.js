@@ -3,7 +3,7 @@ import React, {useState, useContext} from 'react';
 import { Provider, useSelector } from 'react-redux';
 import EntryPoint from './Components/EntryPoint/EntryPoint';
 
-import Store from './Components/Context/Reducers/index';
+import Store from './Components/Context/Index';
 export default function App() {
 
   

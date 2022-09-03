@@ -5,9 +5,12 @@ import Login from "../Login/Login";
 import TabNav from "../TabNav/TabNav";
 
 export default function EntryPoint() {
-    const loged = useSelector((state) => {
-        return state.User.IsLoggedIn;
-    });
+    
+    let states = useSelector((state => {
+        return state;
+    }));	// get state from redux store
+    
+    const loged = states.User.IsLoggedIn;	// get login state from redux store
 
     if(!loged) {
         return (

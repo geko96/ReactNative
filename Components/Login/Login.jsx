@@ -1,7 +1,8 @@
 import { Text, View, StyleSheet, TextInput, Button, TouchableWithoutFeedback, Keyboard, Dimensions } from "react-native";
 import React, {useEffect, useState,useContext} from "react";
 import { useFonts } from "expo-font";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import SetLoged from "../Context/Actions/User.actions";
 
 const apiURL = "https://api-cantilever.herokuapp.com/api/login";
 
@@ -9,6 +10,7 @@ const apiURL = "https://api-cantilever.herokuapp.com/api/login";
 export default function Login () {
     const [username, setUsername] = useState("");	// username state
     const [password, setPassword] = useState("");	// password state
+    const dispatch = useDispatch();	// dispatch function
 
     
     const { height, width } = Dimensions.get("window");	// get screen dimensions
@@ -86,6 +88,9 @@ export default function Login () {
                             .then(data => {
                                 if (data.mail === username) {
                                     alert("Bienvenido " + data.name);
+
+                                    dispatch(SetLoged(true));
+                                    
                                 }else{
                                     alert("Login failed");
                                 }
